@@ -8,27 +8,114 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Include Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons (Optional) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <!-- Custom CSS Styles -->
     <style>
+        /* General Body Styling with Gradient Background */
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-height: 100vh;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar Styling with Glass Effect */
+        .navbar {
+            background: rgba(52, 58, 64, 0.85); /* Semi-transparent dark background */
+            backdrop-filter: blur(10px); /* Glass effect */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .navbar-brand {
             font-weight: 700;
+            color: #fff;
+            font-size: 1.5rem; /* Increased font size for better visibility */
         }
-        .card {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .navbar-dark .navbar-brand .spanadmin {
+            color: #2575fc; /* Accent color consistent with gradient */
+            font-size: 1.5rem; /* Increased font size */
         }
-        .table thead th {
+        .navbar-dark .nav-link {
+            color: rgba(255, 255, 255, 0.85);
+            transition: color 0.3s;
+        }
+        .navbar-dark .nav-link:hover {
+            color: #fff;
+        }
+
+        /* Pill-Shaped Logout Button with Increased Padding */
+        .nav-link.btn-logout {
             background-color: #343a40;
+            border: 1px solid #fff;
+            color: #fff !important;
+            padding: 10px 30px; /* Increased padding */
+            border-radius: 50px; /* Pill shape */
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .nav-link.btn-logout:hover {
+            background-color: #495057;
+            color: #fff !important;
+            transform: scale(1.05);
+        }
+
+        /* Main Container with Glass Effect */
+        .main-container {
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background for glass effect */
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 1200px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        /* Stat Card Styling with Gradient and Glass Effect */
+        .stat-card {
+            background: rgba(255, 255, 255, 0.25); /* Semi-transparent for glass effect */
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+        .stat-card h3 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #2575fc; /* Accent color */
+        }
+        .stat-card p {
+            color: #ffffff;
+            margin: 0;
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        /* Table Styling with Gradient Headers and Glass Effect */
+        .table thead th {
+            background: linear-gradient(45deg, #6a11cb, #2575fc); /* Gradient Headers */
             color: #fff;
             border: none;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+        .table tbody {
+            background: rgba(255, 255, 255, 0.6); /* Semi-transparent for glass effect */
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
         }
         .table tbody tr {
-            background-color: #fff;
             border-bottom: 1px solid #dee2e6;
         }
         .table tbody tr:last-child {
@@ -36,143 +123,198 @@
         }
         .table tbody td {
             vertical-align: middle;
+            text-align: center;
         }
+
+        /* Button Styling with Gradient and Pill Shape */
         .btn {
-            border-radius: 5px;
+            border-radius: 50px; /* Consistent pill shape */
+            padding: 10px 25px;
+            transition: transform 0.2s, background-color 0.3s;
         }
         .btn-primary {
-            background-color: #0d6efd;
+            background: linear-gradient(45deg, #6a11cb, #2575fc); /* Gradient matching theme */
             border: none;
+            color: #fff;
+            margin: 5px;
         }
         .btn-primary:hover {
-            background-color: #0b5ed7;
+            background: linear-gradient(45deg, #2575fc, #6a11cb);
+        }
+        .btn-primary:active {
+            transform: scale(0.95);
         }
         .btn-danger {
             background-color: #dc3545;
             border: none;
+            color: #fff;
+            margin: 5px;
         }
         .btn-danger:hover {
             background-color: #bb2d3b;
         }
+        .btn-danger:active {
+            transform: scale(0.95);
+        }
         .btn-success {
-            background-color: #198754;
+            background: linear-gradient(45deg, #6a11cb, #2575fc); /* Gradient to match theme */
             border: none;
+            color: #fff;
+            margin: 5px;
         }
         .btn-success:hover {
-            background-color: #157347;
+            background: linear-gradient(45deg, #2575fc, #6a11cb);
         }
-        .stat-card {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 20px;
+        .btn-success:active {
+            transform: scale(0.95);
         }
-        .stat-card h3 {
-            font-size: 2rem;
-            margin-bottom: 10px;
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .stat-card {
+                padding: 20px 15px;
+            }
+            .stat-card h3 {
+                font-size: 2rem;
+            }
+            .stat-card p {
+                font-size: 1rem;
+            }
+            .main-container {
+                padding: 20px;
+                margin: 20px;
+            }
+            .btn {
+                padding: 8px 20px;
+                font-size: 0.9rem;
+            }
+            .navbar-brand, .navbar-dark .navbar-brand .spanadmin {
+                font-size: 1.3rem; /* Adjusted for smaller screens */
+            }
         }
-        .stat-card p {
-            color: #6c757d;
-            margin: 0;
+
+        /* Additional Styling for Add Entity Button */
+        .btn-success.mb-3 {
+            padding: 10px 25px;
+            font-size: 1rem;
         }
-        .table-responsive {
-            margin-top: 20px;
+
+        /* Ensure the container has some transparency to show the gradient */
+        .container {
+            /* Removed as main-container handles the glass effect */
         }
     </style>
 </head>
 <body>
-<!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Voting Platform - Admin Dashboard</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <span class="nav-link">Logged in as {{ current_user.name }}</span>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
-                </li>
-            </ul>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                CastMate <span class="spanadmin">Admin Dashboard</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <span class="nav-link">Logged in as {{ current_user.name }}</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-logout" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Dashboard Statistics -->
+        <div class="row mb-4">
+            <!-- Total Voters -->
+            <div class="col-md-4 col-sm-6 mb-3">
+                <div class="stat-card">
+                    <h3>{{ total_voters }}</h3>
+                    <p>Total Voters</p>
+                </div>
+            </div>
+            <!-- Total Entities -->
+            <div class="col-md-4 col-sm-6 mb-3">
+                <div class="stat-card">
+                    <h3>{{ entities|length }}</h3>
+                    <p>Total Entities</p>
+                </div>
+            </div>
+            <!-- Total Votes Cast -->
+            <div class="col-md-4 col-sm-6 mb-3">
+                <div class="stat-card">
+                    <h3>{{ total_votes }}</h3>
+                    <p>Total Votes Cast</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Entities Management Section -->
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="card-title">Manage Entities</h2>
+                    <a href="{{ url_for('add_entity') }}" class="btn btn-primary">Add New Entity</a> <!-- Changed to btn-primary -->
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped align-middle">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Description</th>
+                                <th>Votes</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for entity in entities %}
+                            <tr>
+                                <td><strong>{{ entity.name }}</strong></td> <!-- Bolded Product Name -->
+                                <td>{{ entity.category }}</td>
+                                <td>
+                                    {% if entity.description|length > 100 %}
+                                        {{ entity.description[:100] }}...
+                                    {% else %}
+                                        {{ entity.description }}
+                                    {% endif %}
+                                </td> <!-- Shortened Description -->
+                                <td>{{ entity.vote_count }}</td>
+                                <td>
+                                    <a href="{{ url_for('edit_entity', entity_id=entity.id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    <form method="POST" action="{{ url_for('delete_entity', entity_id=entity.id) }}" style="display:inline;">
+                                        {{ delete_form.hidden_tag() }}
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this entity?');">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="5" class="text-center">No entities found.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-</nav>
-
-<!-- Main Content -->
-<div class="container mt-4">
-    <!-- Dashboard Statistics -->
-    <div class="row">
-        <!-- Total Voters -->
-        <div class="col-md-4">
-            <div class="stat-card">
-                <h3>{{ total_voters }}</h3>
-                <p>Total Voters</p>
-            </div>
-        </div>
-        <!-- Total Entities -->
-        <div class="col-md-4">
-            <div class="stat-card">
-                <h3>{{ entities|length }}</h3>
-                <p>Total Entities</p>
-            </div>
-        </div>
-        <!-- Total Votes Cast -->
-        <div class="col-md-4">
-            <div class="stat-card">
-                <h3>{{ total_votes }}</h3>
-                <p>Total Votes Cast</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Entities Table -->
-    <div class="card">
-        <div class="card-body">
-            <h2 class="card-title">Manage Entities</h2>
-            <a href="{{ url_for('add_entity') }}" class="btn btn-success mb-3">Add New Entity</a>
-            <div class="table-responsive">
-                <table class="table table-striped align-middle">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Description</th>
-                            <th>Votes</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for entity in entities %}
-                        <tr>
-                            <td>{{ entity.name }}</td>
-                            <td>{{ entity.category }}</td>
-                            <td>{{ entity.description }}</td>
-                            <td>{{ entity.vote_count }}</td>
-                            <td>
-                                <a href="{{ url_for('edit_entity', entity_id=entity.id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                <form method="POST" action="{{ url_for('delete_entity', entity_id=entity.id) }}" style="display:inline;">
-                                    {{ delete_form.hidden_tag() }}
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this entity?');">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        {% else %}
-                        <tr>
-                            <td colspan="5" class="text-center">No entities found.</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Include Bootstrap JS and dependencies -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Include Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize Bootstrap tooltips if any (Optional)
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+<!-- templates/login.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +23,8 @@
             font-family: 'Montserrat', sans-serif;
             background: linear-gradient(to right, #6a11cb, #2575fc);
             color: #333;
+            margin: 0;
+            padding: 0;
         }
         
         .container {
@@ -47,33 +50,38 @@
             box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2);
         }
 
-        h2 {
+        /* Header Styling */
+        .login-card h2 {
             text-align: center;
             font-weight: 600;
             margin-bottom: 30px;
             color: #333;
         }
 
+        /* Form Group Styling */
         .form-group {
             position: relative;
+            margin-bottom: 25px;
         }
 
         /* Input Icons */
         .form-group i {
             position: absolute;
             top: 50%;
-            left: 10px;
+            left: 15px;
             transform: translateY(-50%);
             color: #666;
+            font-size: 1.1rem;
         }
 
         /* Adjust input fields to have padding for icons */
         .form-control {
             border-radius: 10px;
-            padding-left: 40px; /* Extra padding for icon */
-            padding-right: 10px;
+            padding-left: 45px; /* Extra padding for icon */
+            padding-right: 15px;
             border: 1px solid #ccc;
             transition: all 0.3s ease;
+            height: 50px;
         }
 
         .form-control:focus {
@@ -84,13 +92,19 @@
         /* Validation Success */
         .form-control.is-valid {
             border-color: #28a745;
-            background-color: #eaffea;
+            background-color: #d4edda;
         }
 
         /* Validation Error */
         .form-control.is-invalid {
             border-color: #dc3545;
-            background-color: #ffe6e6;
+            background-color: #f8d7da;
+        }
+
+        /* Error Message Styling */
+        .form-text.text-danger {
+            margin-top: 5px;
+            font-size: 0.875rem;
         }
 
         /* Submit Button Styles */
@@ -99,23 +113,40 @@
             border: none;
             padding: 12px 0;
             font-size: 16px;
-            border-radius: 10px;
+            border-radius: 50px; /* Pill shape */
             transition: all 0.3s ease;
+            width: 100%;
         }
 
         .btn-primary:hover {
             background: linear-gradient(90deg, #2575fc, #6a11cb);
             box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
         }
-        
-        /* Media Queries for Mobile */
+
+        /* Flash Messages Styling */
+        .alert {
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive Design for Mobile */
         @media (max-width: 576px) {
             .login-card {
                 padding: 30px 20px;
             }
 
-            h2 {
+            .login-card h2 {
                 font-size: 24px;
+            }
+
+            .form-control {
+                height: 45px;
+                padding-left: 40px;
+            }
+
+            .form-group i {
+                left: 10px;
             }
         }
     </style>
@@ -145,7 +176,7 @@
                 <!-- Name -->
                 <div class="form-group">
                     <i class="fas fa-user"></i>
-                    {{ form.name.label }}
+                    {{ form.name.label(class_='sr-only') }}
                     {{ form.name(class_='form-control', placeholder='Enter your full name') }}
                     {% for error in form.name.errors %}
                         <small class="form-text text-danger">{{ error }}</small>
@@ -155,7 +186,7 @@
                 <!-- Email -->
                 <div class="form-group">
                     <i class="fas fa-envelope"></i>
-                    {{ form.email.label }}
+                    {{ form.email.label(class_='sr-only') }}
                     {{ form.email(class_='form-control', placeholder='Enter your email address') }}
                     {% for error in form.email.errors %}
                         <small class="form-text text-danger">{{ error }}</small>
@@ -165,7 +196,7 @@
                 <!-- Phone Number -->
                 <div class="form-group">
                     <i class="fas fa-phone"></i>
-                    {{ form.phone_number.label }}
+                    {{ form.phone_number.label(class_='sr-only') }}
                     {{ form.phone_number(class_='form-control', placeholder='Enter your phone number') }}
                     {% for error in form.phone_number.errors %}
                         <small class="form-text text-danger">{{ error }}</small>
@@ -175,7 +206,7 @@
                 <!-- Special Code -->
                 <div class="form-group">
                     <i class="fas fa-key"></i>
-                    {{ form.special_code.label }}
+                    {{ form.special_code.label(class_='sr-only') }}
                     {{ form.special_code(class_='form-control', placeholder='Enter your special code') }}
                     {% for error in form.special_code.errors %}
                         <small class="form-text text-danger">{{ error }}</small>
@@ -183,13 +214,13 @@
                 </div>
                 
                 <!-- Submit Button -->
-                {{ form.submit(class_='btn btn-primary btn-block') }}
+                {{ form.submit(class_='btn btn-primary') }}
             </form>
         </div>
     </div>
 
     <!-- Include jQuery and Bootstrap JS for interactive components -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
